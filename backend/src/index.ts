@@ -1,16 +1,19 @@
 import express, { json } from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import Routes from './routes';
 
 mongoose.connect(
-  'mongodb+srv://backendAdmin:halkliff2647@omnistack-cl-blpam.gcp.mongodb.net/test?retryWrites=true&w=majority', 
-  {useNewUrlParser: true, useUnifiedTopology: true}
-  );
+  'mongodb+srv://backendAdmin:halkliff2647@omnistack-cl-blpam.gcp.mongodb.net/test?retryWrites=true&w=majority',
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
 
-  const app = express();
+const app = express();
 
-  app.use(json());
+app.use(cors());
 
-  app.use(Routes);
+app.use(json());
 
-  app.listen(3333, () => console.log('Listening on port 3333'));
+app.use(Routes);
+
+app.listen(3333, () => console.log('Listening on port 3333'));

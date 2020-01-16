@@ -1,4 +1,5 @@
-import {Request, Response} from 'express';
+/* eslint-disable class-methods-use-this */
+import { Request, Response } from 'express';
 import BaseController from './BaseController';
 import DevModel from '../models/dev.model';
 import stringToArray from '../utils/stringToArray';
@@ -9,10 +10,13 @@ export default class SearchController implements BaseController {
   public static get instance() {
     return SearchController._instance;
   }
-  
 
   public async index(req: Request, res: Response): Promise<Response> {
-    const { latitude, longitude, techs }: {latitude: number; longitude: number; techs: string} = req.query;
+    const {
+      latitude,
+      longitude,
+      techs
+    }: { latitude: number; longitude: number; techs: string } = req.query;
 
     const techsArray = stringToArray(techs);
 
@@ -49,5 +53,4 @@ export default class SearchController implements BaseController {
   public async destroy(req: Request, res: Response): Promise<Response> {
     return res.status(404).send();
   }
-
 }
